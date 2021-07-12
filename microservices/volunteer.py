@@ -40,7 +40,7 @@ class Volunteer(db.Model):
         self.skills = skills
 
     def json(self):
-        return {"volunteer_id": self.volunteer_id, "volunteer_name": self.volunteer_name, "email": self.email, "age": self.age, "chat_id": self.chat_id, "payment": self.payment, "password": self.password,  "skills": self.skills}
+        return {"volunteer_id": self.volunteer_id, "volunteer_name": self.volunteer_name, "email": self.email, "age": self.age, "chat_id": self.chat_id, "payment": self.payment, "password": self.password,  "skills": self.skills, "username": self.username}
 
 
 # get all volunteers in a list
