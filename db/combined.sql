@@ -56,6 +56,10 @@ initiative_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 initiative_name VARCHAR(200) NOT NULL,
 description VARCHAR(255) NULL,
 
+-- If Volunteers and Chairities support / propose them
+volunteer_id INT NULL,
+charity_id INT NULL, 
+
 -- Will this suffice? Do we need to store which userId liked the initiative?
 support INT NULL,
 
@@ -95,11 +99,11 @@ rating INT NOT NULL,
 
 -- from
 volunteer_id INT NULL,
-organisation_id INT NULL,
+charity_id INT NULL,
 
 -- to
 to_volunteer_id INT NULL,
-to_organisation_id INT NULL,
+to_charity_id INT NULL,
 to_initiative_id INT NULL,
 
 -- To record date and time of review

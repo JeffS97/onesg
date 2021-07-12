@@ -10,11 +10,11 @@ rating INT NOT NULL,
 
 -- from
 volunteer_id INT NULL,
-organisation_id INT NULL,
+charity_id INT NULL,
 
 -- to
 to_volunteer_id INT NULL,
-to_organisation_id INT NULL,
+to_charity_id INT NULL,
 to_initiative_id INT NULL,
 
 -- To record date and time of review
