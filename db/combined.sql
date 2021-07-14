@@ -120,7 +120,7 @@ Use awsVolunteer;
 
 CREATE TABLE awsVolunteer(
 volunteer_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-volunter_name VARCHAR(200) NOT NULL,
+volunteer_name VARCHAR(200) NOT NULL,
 username VARCHAR(200) NOT NULL,
 email Varchar(200) NOT NULL,
 address Varchar(200) NOT NULL,
