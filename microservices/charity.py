@@ -1,3 +1,4 @@
+from operator import add, pos
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
@@ -8,29 +9,37 @@ from os import environ
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsCharity'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 class Charity(db.Model):
-    __tablename__ = 'Charities'
+    __tablename__ = 'awsCharity'
 
     charity_id = db.Column(db.Integer, primary_key=True)
     charity_name = db.Column(db.String(150), nullable=False)
     c_username = db.Column(db.String(150), nullable=False)
     c_email = db.Column(db.String(200), nullable=False)
     password = db.Column(db.String(250), nullable=False)
+    chat_id = db.Column(db.String(250), nullable=False)
+    beneficiary_type = db.Column(db.String(250), nullable=True)
+    postal_code = db.Column(db.Integer, nullable=True)
+    address = db.Column(db.String(250), nullable=False)
 
-    def __init__(self, charity_id, c_username, charity_name, c_email, password):
+    def __init__(self, charity_id, c_username, charity_name, c_email, password, chat_id, beneficiary_type, postal_code, address):
         self.charity_id = charity_id
         self.charity_name = charity_name
         self.c_username = c_username
         self.c_email = c_email
         self.password = password
+        self.chat_id = chat_id
+        self.beneficiary_type = beneficiary_type
+        self.postal_code = postal_code
+        self.address = address
 
     def json(self):
-        return {"charity_id": self.charity_id, "charity_name": self.charity_name, "c_email": self.c_email, "password": self.password, "c_username": self.c_username}
+        return {"charity_id": self.charity_id, "charity_name": self.charity_name, "c_email": self.c_email, "password": self.password, "c_username": self.c_username, "chat_id": self.chat_id, "address": self.address, "postal_code": self.postal_code, "beneficiary_type": self.beneficiary_type}
 
 
 # get all charities in a list

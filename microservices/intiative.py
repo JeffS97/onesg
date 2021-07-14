@@ -8,39 +8,33 @@ from os import environ
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsInitiative'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 class Initiative(db.Model):
-    __tablename__ = 'Initiatives'
+    __tablename__ = 'awsInitiative'
 
     initiative_id = db.Column(db.Integer, primary_key=True)
-    P_name = db.Column(db.String(150), nullable=False)
-    Username = db.Column(db.String(150), nullable=False)
-    Email = db.Column(db.String(200), nullable=False)
-    Age = db.Column(db.Integer, nullable=False)
-    Address = db.Column(db.String(200), nullable=False)
-    Allergy = db.Column(db.String(200), nullable=True)
-    ChatId = db.Column(db.String(200), nullable=True)
-    Payment = db.Column(db.String(200), nullable=True)
-    password = db.Column(db.String(250), nullable=False)
+    initiative_name = db.Column(db.String(150), nullable=False)
+    volunteer_id = db.Column(db.Integer, nullable=False)
+    charity_id = db.Column(db.Integer, nullable=True)
+    support = db.Column(db.String(250), nullable=True)
+    beneficiary_type = db.Column(db.String(250), nullable=True)
+    skills_required = db.Column(db.String(250), nullable=True)
 
-    def __init__(self, initiative_id, Username, P_name, Email, Age, Address, Allergy, ChatId, Payment, password):
+    def __init__(self, initiative_id, volunteer_id, initiative_name, charity_id, support, beneficiary_type, skills_required):
         self.initiative_id = initiative_id
-        self.P_name = P_name
-        self.Username = Username
-        self.Email = Email
-        self.Age = Age
-        self.Address = Address
-        self.Allergy = Allergy
-        self.ChatId = ChatId
-        self.Payment = Payment
-        self.password = password
+        self.initiative_name = initiative_name
+        self.volunteer_id = volunteer_id
+        self.charity_id = charity_id
+        self.support = support
+        self.beneficiary_type = beneficiary_type
+        self.skills_required = skills_required
 
     def json(self):
-        return {"initiative_id": self.initiative_id, "P_name": self.P_name, "Email": self.Email, "Age": self.Age, "Allergy": self.Allergy, "Address": self.Address, "ChatId": self.ChatId, "Payment": self.Payment, "password": self.password}
+        return {"initiative_id": self.initiative_id, "initiative_name": self.initiative_name, "volunteer_id": self.volunteer_id, "charity_id": self.charity_id, "support": self.support, "skills_required": self.skills_required, "beneficiary_type": self.beneficiary_type}
 
 
 # get all initiatives in a list

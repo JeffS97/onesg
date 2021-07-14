@@ -59,7 +59,7 @@ initiative_name VARCHAR(200) NOT NULL,
 description VARCHAR(255) NULL,
 
 -- If Volunteers and Chairities support / propose them
-volunteer_id INT NULL,
+volunteer_id INT NOT NULL,
 charity_id INT NULL, 
 
 -- Will this suffice? Do we need to store which userId liked the initiative?
@@ -135,7 +135,7 @@ credentials VARCHAR(200) NOT NULL,
 -- Added 3 properties
 -- bio, postal code to use google api distance, matching interests with inititaive 
 description VARCHAR(255) NULL,
-dateOfBirth DATE NOT NULL,
+age INT NOT NULL,
 postal_code INT NOT NULL,
 areas_of_interest VARCHAR(255) NULL,
 

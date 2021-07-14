@@ -8,13 +8,13 @@ from os import environ
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsVolunteer'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 class Volunteer(db.Model):
-    __tablename__ = 'Volunteers'
+    __tablename__ = 'awsVolunteer'
 
     volunteer_id = db.Column(db.Integer, primary_key=True)
     volunteer_name = db.Column(db.String(150), nullable=False)
@@ -26,8 +26,13 @@ class Volunteer(db.Model):
     payment = db.Column(db.String(200), nullable=True)
     password = db.Column(db.String(250), nullable=False)
     skills = db.Column(db.String(250), nullable=False)
+    credentials = db.Column(db.String(250), nullable=False)
+    sex = db.Column(db.String(250), nullable=True)
+    description = db.Column(db.String(250), nullable=True)
+    areas_of_interest = db.Column(db.String(250), nullable=False)
+    postal_code = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, volunteer_id, username, volunteer_name, email, age, address, chat_id, payment, password, skills):
+    def __init__(self, volunteer_id, username, volunteer_name, email, age, address, chat_id, payment, password, skills, credentials, sex, description, areas_of_interest, postal_code):
         self.volunteer_id = volunteer_id
         self.volunteer_name = volunteer_name
         self.username = username
@@ -38,9 +43,14 @@ class Volunteer(db.Model):
         self.payment = payment
         self.password = password
         self.skills = skills
+        self.credentials = credentials
+        self.sex = sex
+        self.description = description
+        self.areas_of_interest = areas_of_interest
+        self.postal_code = postal_code
 
     def json(self):
-        return {"volunteer_id": self.volunteer_id, "volunteer_name": self.volunteer_name, "email": self.email, "age": self.age, "chat_id": self.chat_id, "payment": self.payment, "password": self.password,  "skills": self.skills, "username": self.username}
+        return {"volunteer_id": self.volunteer_id, "volunteer_name": self.volunteer_name, "email": self.email, "age": self.age, "chat_id": self.chat_id, "payment": self.payment, "password": self.password,  "skills": self.skills, "username": self.username, "sex": self.sex, "description": self.description, "credentials": self.credentials, "postal_code": self.postal_code, "areas_of_interest": self.areas_of_interest}
 
 
 # get all volunteers in a list
