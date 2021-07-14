@@ -83,7 +83,8 @@ event_id INT NOT NULL,
 -- This includes people and money 'people' & 'money'
 resource_name VARCHAR(255) NOT NULL,
 
-resource_qty INT NOT NULL,
+resource_qty_required INT NOT NULL,
+resource_qty_obtained INT NOT NULL,
 resource_description VARCHAR(255) NULL,
 
 PRIMARY KEY (event_id, resource_name)
