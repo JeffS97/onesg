@@ -8,7 +8,7 @@ from os import environ
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsVolunteer'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsVolunteer'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -114,7 +114,7 @@ def add_volunteer(vid):
 
 
 # pull volunteer's personal particulars
-@app.route("/volunteer/findById/<int: vid>", methods=['POST'])
+@app.route("/volunteer/findById/<int:vid>", methods=['POST'])
 def find_by_vid(vid):
     # data = request.get_json()
     # vid = data['volunteer_id']

@@ -103,7 +103,7 @@ def add_charity(cid):
 
 
 # pull specific charity's information
-@app.route("/charity/findByCid/<int: cid>", methods=['POST'])
+@app.route("/charity/findByCid/<int:cid>", methods=['POST'])
 def find_by_cid(cid):
     # data = request.get_json()
     # cid = data['charity_id']
