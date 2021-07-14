@@ -28,7 +28,7 @@ resource_qty INT NOT NULL,
 
 -- Do we need this? (To record date and time of review)
 date DATE NOT NULL,
-time TIME NOT NULL
+time TIME NOT NULL,
 
 PRIMARY KEY (volunteer_id, event_id, resource_name)
 );
