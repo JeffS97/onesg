@@ -49,9 +49,9 @@ address VARCHAR(255) NULL,
 postal_code INT NULL
 );
 
-DROP DATABASE IF EXISTS awsIniative;
-CREATE DATABASE awsIniative;
-Use awsIniative;
+DROP DATABASE IF EXISTS awsInitiative;
+CREATE DATABASE awsInitiative;
+Use awsInitiative;
 
 CREATE TABLE awsInitiative(
 initiative_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
