@@ -8,7 +8,7 @@ charity_name VARCHAR(200) NOT NULL,
 c_username VARCHAR(200) NOT NULL,
 c_email Varchar(200) NOT NULL,
 password Varchar(255) NOT NULL,
-chat_id VARCHAR(200) NOT NULL,
+-- chat_id VARCHAR(200) NOT NULL,
 
 -- Added These
 address Varchar(200) NOT NULL,

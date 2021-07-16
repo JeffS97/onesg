@@ -8,7 +8,7 @@ volunter_name VARCHAR(200) NOT NULL,
 username VARCHAR(200) NOT NULL,
 email Varchar(200) NOT NULL,
 address Varchar(200) NOT NULL,
-chat_id VARCHAR(200) NOT NULL,
+-- chat_id VARCHAR(200) NOT NULL,
 
 -- Stuff yall added in doc but not in the ss u sent me, @zhihao
 sex VARCHAR(2) NULL,

@@ -22,7 +22,7 @@ class Volunteer(db.Model):
     email = db.Column(db.String(200), nullable=False)
     age = db.Column(db.Integer, nullable=False)
     address = db.Column(db.String(200), nullable=False)
-    chat_id = db.Column(db.String(200), nullable=True)
+    # chat_id = db.Column(db.String(200), nullable=True)
     payment = db.Column(db.String(200), nullable=True)
     password = db.Column(db.String(250), nullable=False)
     skills = db.Column(db.String(250), nullable=False)
@@ -32,14 +32,14 @@ class Volunteer(db.Model):
     areas_of_interest = db.Column(db.String(250), nullable=False)
     postal_code = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, volunteer_id, username, volunteer_name, email, age, address, chat_id, payment, password, skills, credentials, sex, description, areas_of_interest, postal_code):
+    def __init__(self, volunteer_id, username, volunteer_name, email, age, address, payment, password, skills, credentials, sex, description, areas_of_interest, postal_code):
         self.volunteer_id = volunteer_id
         self.volunteer_name = volunteer_name
         self.username = username
         self.email = email
         self.age = age
         self.address = address
-        self.chat_id = chat_id
+        # self.chat_id = chat_id
         self.payment = payment
         self.password = password
         self.skills = skills
@@ -50,7 +50,7 @@ class Volunteer(db.Model):
         self.postal_code = postal_code
 
     def json(self):
-        return {"volunteer_id": self.volunteer_id, "volunteer_name": self.volunteer_name, "email": self.email, "age": self.age, "chat_id": self.chat_id, "payment": self.payment, "password": self.password,  "skills": self.skills, "username": self.username, "sex": self.sex, "description": self.description, "credentials": self.credentials, "postal_code": self.postal_code, "areas_of_interest": self.areas_of_interest}
+        return {"volunteer_id": self.volunteer_id, "volunteer_name": self.volunteer_name, "email": self.email, "age": self.age, "payment": self.payment, "password": self.password,  "skills": self.skills, "username": self.username, "sex": self.sex, "description": self.description, "credentials": self.credentials, "postal_code": self.postal_code, "areas_of_interest": self.areas_of_interest}
 
 
 # get all volunteers in a list

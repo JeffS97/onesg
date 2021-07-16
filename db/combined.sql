@@ -8,7 +8,7 @@ charity_name VARCHAR(200) NOT NULL,
 c_username VARCHAR(200) NOT NULL,
 c_email Varchar(200) NOT NULL,
 password Varchar(255) NOT NULL,
-chat_id VARCHAR(200) NOT NULL,
+-- chat_id VARCHAR(200) NOT NULL,
 
 -- Added These
 address Varchar(200) NOT NULL,
@@ -124,7 +124,7 @@ volunteer_name VARCHAR(200) NOT NULL,
 username VARCHAR(200) NOT NULL,
 email Varchar(200) NOT NULL,
 address Varchar(200) NOT NULL,
-chat_id VARCHAR(200) NOT NULL,
+-- chat_id VARCHAR(200) NOT NULL,
 payment VARCHAR(200) NOT NULL,
 
 -- Stuff yall added in doc but not in the ss u sent me, @zhihao
@@ -143,4 +143,32 @@ areas_of_interest VARCHAR(255) NULL,
 -- End of added properties
 password Varchar(255) NOT NULL,
 skills VARCHAR(250) NULL
+);
+
+DROP DATABASE IF EXISTS awsBeneficiary;
+CREATE DATABASE awsBeneficiary;
+Use awsBeneficiary;
+
+CREATE TABLE awsBeneficiary(
+beneficiary_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+beneficiary_name VARCHAR(200) NOT NULL,
+username VARCHAR(200) NOT NULL,
+email Varchar(200) NOT NULL,
+address Varchar(200) NOT NULL,
+sex VARCHAR(2) NULL,
+description VARCHAR(255) NULL,
+dateOfBirth DATE NOT NULL,
+postal_code INT NOT NULL,
+password Varchar(255) NOT NULL
+);
+
+DROP DATABASE IF EXISTS awsNeed;
+CREATE DATABASE awsNeed;
+Use awsNeed;
+
+CREATE TABLE awsNeed(
+beneficiary_id INT NOT NULL,
+need_name VARCHAR(255) NOT NULL,
+
+PRIMARY KEY (beneficiary_id, need_name)
 );

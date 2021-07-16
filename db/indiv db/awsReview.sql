@@ -7,6 +7,7 @@ review_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 rating INT NOT NULL, 
 
 -- This looks a bit dumb :/ Is there a better way to handle these?
+-- Should we split into 2 different reviews
 
 -- from
 volunteer_id INT NULL,
