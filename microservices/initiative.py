@@ -13,28 +13,38 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+CORS(app)
+
 class Initiative(db.Model):
     __tablename__ = 'awsInitiative'
 
-    initiative_id = db.Column(db.Integer, primary_key=True)
+    initiative_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
     initiative_name = db.Column(db.String(150), nullable=False)
+    description = db.Column(db.String(250), nullable=False)
     volunteer_id = db.Column(db.Integer, nullable=False)
     charity_id = db.Column(db.Integer, nullable=True)
     support = db.Column(db.String(250), nullable=True)
+    category = db.Column(db.String(250), nullable=True)
+    volunteer_goal = db.Column(db.Integer, nullable=False)
+    donation_goal = db.Column(db.Integer, nullable=False)
     beneficiary_type = db.Column(db.String(250), nullable=True)
     skills_required = db.Column(db.String(250), nullable=True)
 
-    def __init__(self, initiative_id, volunteer_id, initiative_name, charity_id, support, beneficiary_type, skills_required):
-        self.initiative_id = initiative_id
+    def __init__(self, volunteer_id, initiative_name, description, charity_id, support, category, volunteer_goal, donation_goal, beneficiary_type, skills_required):
+        # self.initiative_id = initiative_id
         self.initiative_name = initiative_name
+        self.description = description
         self.volunteer_id = volunteer_id
         self.charity_id = charity_id
         self.support = support
+        self.category = category
+        self.volunteer_goal = volunteer_goal
+        self.donation_goal = donation_goal
         self.beneficiary_type = beneficiary_type
         self.skills_required = skills_required
 
     def json(self):
-        return {"initiative_id": self.initiative_id, "initiative_name": self.initiative_name, "volunteer_id": self.volunteer_id, "charity_id": self.charity_id, "support": self.support, "skills_required": self.skills_required, "beneficiary_type": self.beneficiary_type}
+        return {"initiative_id": self.initiative_id, "initiative_name": self.initiative_name, "description": self.description, "volunteer_id": self.volunteer_id, "charity_id": self.charity_id, "support": self.support, "category": self.category, "volunteer_goal": self.volunteer_goal, "donation_goal": self.donation_goal, "skills_required": self.skills_required, "beneficiary_type": self.beneficiary_type}
 
 
 # get all initiatives in a list
@@ -80,21 +90,12 @@ def find_by_initiative_id(iid):
 
 
 # add new initiative
-@app.route("/initiative/add/<int:iid>", methods=['POST'])
-def add_initiative(iid):
-    if (Initiative.query.filter_by(initiative_id=iid).first()):
-        return jsonify(
-            {
-                "code": 400,
-                "data": {
-                    "initiative_id": iid
-                },
-                "message": "Initiative already exists."
-            }
-        ), 400
+@app.route("/initiative/add", methods=['POST'])
+def add_initiative():
  
     data = request.get_json()
-    initiative = Initiative(iid, **data)
+    print(data)
+    initiative = Initiative(**data)
  
     try:
         db.session.add(initiative)
@@ -103,9 +104,6 @@ def add_initiative(iid):
         return jsonify(
             {
                 "code": 500,
-                "data": {
-                    "initiative_id": iid
-                },
                 "message": "An error occurred whilst adding the initiative."
             }
         ), 500
