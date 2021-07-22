@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Profile</title>
+    <link rel="stylesheet" href="resources/initiative.css">
+    <link rel="stylesheet" href="resources/profile.css">
+</head>
+<body>
+    <style>
+        body {
+            background-image: url("img/red.jpg");
+            background-repeat: repeat;
+            background-size: cover;
+        }
+        .text {
+        animation-duration: 2s;
+        animation-name: fadein;
+        }
+
+        @keyframes fadein {
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+        }
+    </style>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
+        <a href="main.php" class="navbar-brand">OneSG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="hamburger">
+            <!-- Search -->
+            <form class="form-inline my-2 my-lg-0 ml-auto" action="result.php" method="POST">
+                <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search" name="searchItem">
+                <button class="btn btn-link" name="doSearch" type="submit"><i class="fas fa-search text-white" aria-hidden="true"></i></button>
+            </form>
+            
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="main.php" class="nav-link">Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="user_profile.php" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../../server/helper/logout.php" class="nav-link" onclick="window.open('https://www.linkedin.com/m/logout/')">Log Out</a>  
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class='text'>
+    <div class="box container-fluid">
+        <div class="profile">
+            <img src="" style="height: 150px; width: 150px;" id="user_img">
+        </div>
+        <!-- <h2 style="margin-top: -20px;" id="name"><span id="fname">Phris</span> <span id="lname">Coskitt</span></h2>
+        <h4><span id="job">Assistant Professor of Information Systems</span>, <span id="company">SMU</span></h4> -->
+        <h2 style="margin-top: -20px;" id="initiative_name"></h2>
+        <h4>by <span id="volunteer_name"></span></h4> 
+        
+        <!-- Booking -->
+        <button class="btn btn-dark" type="button" style="margin-top: 40px;" id="book" data-toggle="modal" data-target="#booking_menu">
+            Register your interest
+        </button>
+        
+        <div class="modal fade" id="booking_menu" tabindex="-1" role="dialog" aria-labelledby="booking_menu" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <!-- Toggled in accordance to availability --> 
+                  <h5 class="modal-title" id="availTimeslotHeader">Book an interview with <span id="interviewer_fname1"></span>!</h5>
+                  <h5 class="modal-title" id = "noTimeslotHeader" style="display:none">Oops! <span id="interviewer_fname2"> </span> is not available!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form action="../../../server/helper/addBooking.php" method="POST" class="form">
+                    <div class="modal-body">
+                        <div id="booking_form" style="margin-top: 10px;">
+                        <div id='noTimeslots' class = 'mx-auto' style="display:none">
+                            <span>Sorry, <span id="interviewer_fname3"></span> has no available slots in the next 2 months</span>
+                        </div>
+                          <!-- Replace with actual timeslots from database later -->
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                              30/10/20, 4:00pm
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                08/11/20, 9:00am
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                            <label class="form-check-label" for="exampleRadios3">
+                                11/11/20, 12:00pm
+                            </label>
+                        </div> -->
+                        </div>
+                    </div>
+                    <input type="hidden" name="interviewer_id" id="interviewer_id">
+                    <div class="modal-footer" >
+                        <!-- Toggled in accordance to availability --> 
+                        <div class="mx-auto" id='makeBooking'>
+                            <button type="submit" class="btn btn-dark" id="info_submit" name="info">Informational Interview</button>
+                            <button type="submit" class="btn btn-dark" id="mock_submit" name="mock">Mock Interview</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        
+
+
+        <!-- Interviewer's Info -->
+        <div style="width: 80%;" class="mx-auto">
+            <div class="row" style="margin-top: 80px;">
+                <div class="col-sm-6">
+                    <span class="fas fa-info-circle"></span>  About:
+                </div>
+                <div class="col-sm-6 text-left" id="description"></div>
+            </div>
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <span class="fas fa-envelope"></span> Category:
+                </div>
+                <div class="col-sm-6 text-left">
+                    <span id="category"></span>
+                </div>
+            </div>
+            <hr class="my-4">
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <span class="fas fa-briefcase"></span>  Beneficiary:
+                </div>
+                <div class="col-sm-6 text-left">
+                    <span id="beneficiary_type"></span>
+                </div>
+            </div>
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <span class="fas fa-graduation-cap"></span>  Volunteers Required:
+                </div>
+                <div class="col-sm-6 text-left">
+                    <span id="volunteer_goal"></span>
+                </div>
+            </div>
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <span class="fas fa-graduation-cap"></span>  Skills Required:
+                </div>
+                <div class="col-sm-6 text-left">
+                    <span id="skills_required"></span>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    </div>
+    
+    <script type="text/javascript">
+    $(document).ready(async()=>{
+        var initiative_id = 1;
+
+        var serviceURL = 'http://localhost:5000/initiative/findByInitiativeId/' + initiative_id;
+
+        try{
+            var response = await fetch(
+            serviceURL, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"}
+            })
+
+            var result = await response.json();
+            var data = result.data;
+            console.log(data);
+            document.getElementById('initiative_name').innerText = data.initiative_name;
+            document.getElementById('volunteer_name').innerText = data.volunteer_id; // retrieve volunteer name by volunteer_id
+            document.getElementById('description').innerText = data.description;
+            document.getElementById('category').innerText = data.category;
+            document.getElementById('beneficiary_type').innerText = data.beneficiary_type;
+            document.getElementById('volunteer_goal').innerText = data.volunteer_goal;
+            document.getElementById('skills_required').innerText = data.skills_required;
+
+            if(response.status === 200){
+                console.log("Successfully retrieved initiative information")
+            }
+            else if(response.status == 400){
+                console.log("400");
+            }
+            else{
+                throw response.status;
+            }
+        }
+        catch (error){
+            console.log(error);
+        }
+    })
+    </script>
+
+</body>
+</html>
+
+
+
+
+
