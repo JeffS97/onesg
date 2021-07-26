@@ -11,6 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="resources/parallax.js-1.5.0/parallax.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>OneSG</title>
     <link rel="stylesheet" href="resources/card4.css">
     <link rel="stylesheet" href="resources/style.css">
@@ -58,7 +61,7 @@
         // Scroll Animation Function
         $(document).ready(function() {
              // Check if element is scrolled into view
-            function isScrolledIntoView(elem) {
+             function isScrolledIntoView(elem) {
                 var docViewTop = $(window).scrollTop();
                 var docViewBottom = docViewTop + $(window).height();
 
@@ -164,8 +167,8 @@
     <div class="container animation animate__animated" id="interviewers">
         <h2 class="animation animate__animated a">Check out a few of our initiatives by the community!</h2>
         
-        <div class="row">
-                <div class="card col-sm-4" style="width: 18rem;">
+        <div class="row" id = "initiativelist">
+                <!-- <div class="card col-sm-4" style="width: 18rem;">
                     <img class="card-img-top" src="img/children_programming.jpeg" alt="prof">
                     <div class="card-body">
                         <h5 class="card-title">Programming lessons for under-privileged children</h5>
@@ -196,17 +199,12 @@
                               to source for outdated or discarded computer parts which are still reusable to build computers for the under-privileged.
                             </p>
                     </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
 
     <!-- About Us Parallax -->
-        <!-- <p class="parallax-text">
-            <span style="font-size: 35px; letter-spacing: .2rem;">WHAT WE DO</span><br>
-            We have curated several professionals across a multitude of industries who have been generous enough to offer their time to help level up the interview skills of others. Through our platform,
-            you can simply arrange for either an informational or mock interview with an industry professional and begin the process of upgrading your interviewing skills for that next job on the horizon!
-        </p> -->
         <div class="parallax-window tint try" id="about" data-parallax="scroll"  data-image-src="img/volunteer_food.jpg" style="margin-top: 100px;">
      <div class="outerdiv">     
         <div class="row mx-auto text-center fadein animate__animated" id="innerdiv">
@@ -374,127 +372,6 @@
       </div>
     </div>
     
-
-      <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row">
-              <div class="card2 col-sm-4" style="width: 18rem;">
-                  <div class="card-author">
-                    <a class="author-avatar">
-                      <img src="img/zh.jpeg"/>
-                    </a>
-                    <svg class="half-circle" viewBox="0 0 106 57">
-                      <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                    </svg>
-          
-                    <div class="author-name">
-                      <div class="author-name-prefix">Developer</div>
-                      Lim Zhi Hao
-                    </div>
-                  </div>
-                  <p class="textDate">Jun 24th 2020</p>
-                  <p class="card-text reviewDesc">Dr. Phris Coskitt is a wonderful professor, when he isn't trying to jumpscare me.</p>
-              
-              </div>
-              <div class="card2 col-sm-4" style="width: 18rem;">
-                <div class="card-author">
-                  <a class="author-avatar">
-                    <img src="img/brayden.jpeg"/>
-                  </a>
-                  <svg class="half-circle" viewBox="0 0 106 57">
-                    <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                  </svg>
-        
-                  <div class="author-name">
-                    <div class="author-name-prefix">Teacher</div>
-                    Brayden Leo
-                  </div>
-                </div>
-                <p class="textDate">July 7th 2020</p>
-                <p class="card-text reviewDesc">Xin Wei helped me become the second best in SIS.</p>
-            
-            </div>
-
-              </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="card2 col-sm-4" style="width: 18rem;">
-                <div class="card-author">
-                  <a class="author-avatar" href="#">
-                    <img src="img/ben.jpg" />
-                  </a>
-                  <svg class="half-circle" viewBox="0 0 106 57">
-                    <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                  </svg>
-        
-                  <div class="author-name">
-                    <div class="author-name-prefix">Security Analyst</div>
-                    Benjamin Khong
-                  </div>
-                </div>
-                  <p class="textDate">Aug 9th 2020</p>
-                  <p class="reviewDesc">Thanks to Hong Seng, I now have a job!<p>
-              </div>
-              <div class="card2 col-sm-4" style="width: 18rem;">
-                <div class="card-author">
-                  <a class="author-avatar" href="#">
-                    <img src="img/weijie.jpg" />
-                  </a>
-                  <svg class="half-circle" viewBox="0 0 106 57">
-                    <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                  </svg>
-        
-                  <div class="author-name">
-                    <div class="author-name-prefix">Game Developer</div>
-                    Goh Wei Jie
-                  </div>
-                </div>
-                  <p class="textDate">Sep 14th 2020</p>
-                  <p class="reviewDesc">I would be homeless right now if it weren't for this platform.<p>
-              </div>
-        
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-            <div class="card2 col-sm-4 mx-auto" style="width: 18rem;">
-              <div class="card-author">
-                <a class="author-avatar" href="#">
-                  <img src="img/ambrose.jpg" />
-                </a>
-                <svg class="half-circle" viewBox="0 0 106 57">
-                  <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                </svg>
-      
-                <div class="author-name">
-                  <div class="author-name-prefix">Tech Consultant</div>
-                  Ambrose Wang
-                </div>
-              </div>
-                <p class="textDate">Oct 11th 2020</p>
-                <p class="reviewDesc">Thanks to this platform, I was able to upgrade my interview skills and secure a job!<p>
-            </div>
-          </div>
-          
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div> -->
-    
     <!-- FAQ Section -->
     <div class="container animation animate__animated" style="margin-top: 100px;" id="faq">
       <h1 style="text-align: center; margin-bottom: 40px;">FAQ</h1>
@@ -600,6 +477,78 @@
     <div class="text-center py-2" style="background-color: black; color: white; margin-top: 300px; font-size: small;">© 2021 Copyright: 
         <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">OneSG</a> 
     </div>
+
+    <script type="text/javascript">
+      $(document).ready(async()=>{
+          var serviceURL = 'http://localhost:5000/initiatives';
+  
+          try{
+              var response = await fetch(
+              serviceURL, {
+                  method: 'GET',
+                  headers: {"Content-Type": "application/json"}
+              })
+  
+              var result = await response.json();
+              var data = result.data;
+              //console.log(data);
+              var allinitiatives = data.initiatives;
+              //console.log(allinitiatives);
+              var node = document.getElementById('initiativelist');
+
+              let createTaskCard = (task) => {
+
+                let card = document.createElement('div');
+                card.className = 'card col-sm-4';
+                card.style = 'width: 18rem';
+
+                let cardimg = document.createElement('img');
+                cardimg.className = 'card-img-top';
+                cardimg.src = 'img/children_programming.jpeg';
+                cardimg.alt = 'prof';
+
+                let cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+
+                let title = document.createElement('h5');
+                title.innerText = task.initiative_name;
+                title.className = 'card-title';
+
+                let desc = document.createElement('p');
+                desc.className = 'desc';
+                desc.innerText = task.category;
+
+                let descreview = document.createElement('p');
+                descreview.className = 'desc-review';
+                descreview.innerText = task.description;
+                
+                cardBody.appendChild(title);
+                cardBody.appendChild(desc);
+                cardBody.appendChild(descreview);
+                card.appendChild(cardimg);
+                card.appendChild(cardBody);
+                node.appendChild(card);
+                }
+
+              allinitiatives.forEach((initiative) => {
+                createTaskCard(initiative);
+              });
+              
+              if(response.status === 200){
+                  console.log("Successfully retrieved initiative information")
+              }
+              else if(response.status == 400){
+                  console.log("400");
+              }
+              else{
+                  throw response.status;
+              }
+          }
+          catch (error){
+              console.log(error);
+          }
+      });
+      </script>
 
 </body>
 </html>
