@@ -76,7 +76,8 @@ beneficiary_type VARCHAR(255) NULL,
 skills_required VARCHAR(255) NULL,
 date VARCHAR(255) NOT NULL,
 current_donations INT NULL,
-time VARCHAR(255) NOT NULL
+time VARCHAR(255) NOT NULL,
+endorsed BOOLEAN NOT NULL
 );
 
 DROP DATABASE IF EXISTS awsResource;

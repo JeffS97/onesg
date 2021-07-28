@@ -32,8 +32,9 @@ class Initiative(db.Model):
     date = db.Column(db.String(250), nullable=False)
     time = db.Column(db.String(250), nullable=False)
     current_donations = db.Column(db.Integer, nullable=True)
+    endorsed = db.Column(db.Boolean, nullable=False)
 
-    def __init__(self, volunteer_id, initiative_name, description, charity_id, support, category, volunteer_goal, donation_goal, beneficiary_type, skills_required, date, current_donations, time):
+    def __init__(self, volunteer_id, initiative_name, description, charity_id, support, category, volunteer_goal, donation_goal, beneficiary_type, skills_required, date, current_donations, time, endorsed):
         # self.initiative_id = initiative_id
         self.initiative_name = initiative_name
         self.description = description
@@ -48,9 +49,10 @@ class Initiative(db.Model):
         self.date = date
         self.current_donations = current_donations;
         self.time = time;
+        self.endorsed = endorsed;
 
     def json(self):
-        return {"initiative_id": self.initiative_id, "initiative_name": self.initiative_name, "description": self.description, "volunteer_id": self.volunteer_id, "charity_id": self.charity_id, "support": self.support, "category": self.category, "volunteer_goal": self.volunteer_goal, "donation_goal": self.donation_goal, "skills_required": self.skills_required, "beneficiary_type": self.beneficiary_type, "date": self.date, "current_donations": self.current_donations, "time": self.time}
+        return {"initiative_id": self.initiative_id, "initiative_name": self.initiative_name, "description": self.description, "volunteer_id": self.volunteer_id, "charity_id": self.charity_id, "support": self.support, "category": self.category, "volunteer_goal": self.volunteer_goal, "donation_goal": self.donation_goal, "skills_required": self.skills_required, "beneficiary_type": self.beneficiary_type, "date": self.date, "current_donations": self.current_donations, "time": self.time, "endorsed": self.endorsed}
 
 
 # get all initiatives in a list

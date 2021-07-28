@@ -40,7 +40,7 @@
     </style>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
-        <a href="main.php" class="navbar-brand">OneSG</a>
+        <a href="index.html" class="navbar-brand">OneSG</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,7 +53,7 @@
             
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="main.php" class="nav-link">Bookings</a>
+                    <a href="index.html" class="nav-link">Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a href="user_profile.php" class="nav-link">Profile</a>
@@ -71,7 +71,7 @@
         </div>
         <!-- <h2 style="margin-top: -20px;" id="name"><span id="fname">Phris</span> <span id="lname">Coskitt</span></h2>
         <h4><span id="job">Assistant Professor of Information Systems</span>, <span id="company">SMU</span></h4> -->
-        <h2 style="margin-top: -20px;" id="initiative_name"></h2>
+        <h2 style="margin-top: -20px; display: inline; margin-right: 5px;" id="initiative_name"></h2><span id="endorsed"></span>
         <h4>by <span id="volunteer_name"></span></h4> 
         
         <!-- Booking -->
@@ -144,6 +144,14 @@
                 </div>
             </div>
             <hr class="my-4">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <span class="fas fa-calendar-alt"></span>  Schedule:
+                </div>
+                <div class="col-sm-6 text-left" id="datetime"></div>
+            </div>
+            <hr class="my-4">
             
             <div class="row">
                 <div class="col-sm-6">
@@ -200,6 +208,11 @@
             var donation_goal_number = data.current_donations / data.donation_goal * 100 + "%";
             document.getElementById('volunteer_progress').style.width = volunteer_goal_number;
             document.getElementById('donation_progress').style.width = donation_goal_number;
+            document.getElementById('datetime').innerText = data.date + "s, " + data.time;
+            
+            if(data.endorsed){
+                document.getElementById('endorsed').className += "fas fa-check-circle fa-2x";
+            }
 
             if(response.status === 200){
                 console.log("Successfully retrieved initiative information")

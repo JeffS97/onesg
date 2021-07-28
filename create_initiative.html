@@ -230,6 +230,7 @@
         var charity_id = 0;
         var support = 0;
         var current_donations = 0;
+        var endorsed = true;
         console.log("Initiative Name: " + initiative_name);
         console.log("Description: " + description);
         console.log("Category: " + category);
@@ -261,7 +262,8 @@
                     support : support,
                     current_donations : current_donations,
                     date : date,
-                    time: time
+                    time: time,
+                    endorsed: endorsed
                 })
             })
 
