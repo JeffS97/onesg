@@ -190,3 +190,7 @@ h5 {
 
 }
 
+.progress {
+    width: 60%;
+    margin: auto;
+}
