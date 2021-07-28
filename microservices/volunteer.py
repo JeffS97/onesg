@@ -13,6 +13,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+CORS(app)
+
 class Volunteer(db.Model):
     __tablename__ = 'awsVolunteer'
 
@@ -135,4 +137,4 @@ def find_by_vid(vid):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
