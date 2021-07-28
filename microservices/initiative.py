@@ -8,7 +8,7 @@ from os import environ
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsInitiative'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsInitiative'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -29,8 +29,11 @@ class Initiative(db.Model):
     donation_goal = db.Column(db.Integer, nullable=False)
     beneficiary_type = db.Column(db.String(250), nullable=True)
     skills_required = db.Column(db.String(250), nullable=True)
+    date = db.Column(db.String(250), nullable=False)
+    time = db.Column(db.String(250), nullable=False)
+    current_donations = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, volunteer_id, initiative_name, description, charity_id, support, category, volunteer_goal, donation_goal, beneficiary_type, skills_required):
+    def __init__(self, volunteer_id, initiative_name, description, charity_id, support, category, volunteer_goal, donation_goal, beneficiary_type, skills_required, date, current_donations, time):
         # self.initiative_id = initiative_id
         self.initiative_name = initiative_name
         self.description = description
@@ -42,9 +45,12 @@ class Initiative(db.Model):
         self.donation_goal = donation_goal
         self.beneficiary_type = beneficiary_type
         self.skills_required = skills_required
+        self.date = date
+        self.current_donations = current_donations;
+        self.time = time;
 
     def json(self):
-        return {"initiative_id": self.initiative_id, "initiative_name": self.initiative_name, "description": self.description, "volunteer_id": self.volunteer_id, "charity_id": self.charity_id, "support": self.support, "category": self.category, "volunteer_goal": self.volunteer_goal, "donation_goal": self.donation_goal, "skills_required": self.skills_required, "beneficiary_type": self.beneficiary_type}
+        return {"initiative_id": self.initiative_id, "initiative_name": self.initiative_name, "description": self.description, "volunteer_id": self.volunteer_id, "charity_id": self.charity_id, "support": self.support, "category": self.category, "volunteer_goal": self.volunteer_goal, "donation_goal": self.donation_goal, "skills_required": self.skills_required, "beneficiary_type": self.beneficiary_type, "date": self.date, "current_donations": self.current_donations, "time": self.time}
 
 
 # get all initiatives in a list

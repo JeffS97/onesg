@@ -73,7 +73,10 @@ donation_goal INT NOT NULL,
 beneficiary_type VARCHAR(255) NULL,
 
 -- Tagging: Question, should I put this under Event or Initiative
-skills_required VARCHAR(255) NULL
+skills_required VARCHAR(255) NULL,
+date VARCHAR(255) NOT NULL,
+current_donations INT NULL,
+time VARCHAR(255) NOT NULL
 );
 
 DROP DATABASE IF EXISTS awsResource;

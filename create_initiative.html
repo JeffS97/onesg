@@ -115,6 +115,38 @@
                   Skills requirement is required.
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- Input volunteering day -->
+                        <label for="date">Day of the Week</label><br>
+                        <select id="date" name="date" class="form-control" required>
+                            <option value='' disabled selected hidden>Select a day</option>
+                            <option>Monday</option>
+                            <option>Tuesday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+                            <option>Sunday</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <!-- Input volunteering time -->
+                            <label for="time">Weekly Timing</label>
+                            <input type="time" id="time" name="time" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Weekly timing is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            
             
             <!-- Input volunteer goal -->
             <div class="form-group">
@@ -192,9 +224,12 @@
         var skills_required = document.getElementById('skills_required').value;
         var volunteer_goal = document.getElementById('volunteer_goal').value;
         var donation_goal = document.getElementById('donation_goal').value;
+        var date = document.getElementById('date').value;
+        var time = document.getElementById('time').value;
         var volunteer_id = 1;
         var charity_id = 0;
         var support = 0;
+        var current_donations = 0;
         console.log("Initiative Name: " + initiative_name);
         console.log("Description: " + description);
         console.log("Category: " + category);
@@ -203,6 +238,8 @@
         console.log("Volunteer Goal: " + volunteer_goal);
         console.log("Donation Goal: " + donation_goal);
         console.log("Volunteer ID: " + volunteer_id);
+        console.log("Date " + date);
+        console.log("Time " + time);
 
         var serviceURL = 'http://localhost:5000/initiative/add';
 
@@ -221,7 +258,10 @@
                     donation_goal : donation_goal,
                     volunteer_id : volunteer_id,
                     charity_id : charity_id,
-                    support : support
+                    support : support,
+                    current_donations : current_donations,
+                    date : date,
+                    time: time
                 })
             })
 
