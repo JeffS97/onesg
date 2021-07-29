@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Profile</title>
+    <link rel="stylesheet" href="resources/initiative.css"> 
+    <link rel="stylesheet" href="resources/profile.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <!-- Autocomplete-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+</head>
+<body>
+    <style>
+        body {
+            background-image: url("img/red.jpg");
+            background-repeat: repeat;
+            background-size: cover;
+        }
+        .text {
+        animation-duration: 2s;
+        animation-name: fadein;
+        }
+
+        .autocomplete-suggestions {
+        border: 1px solid #999;
+        background: #FFF;
+        overflow: auto;
+        }
+    
+    </style>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
+        <a href="main.php" class="navbar-brand">OneSG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="hamburger">
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="main.php" class="nav-link">Programmes & Initiatives</a>
+                </li>
+                <li class="nav-item">
+                    <a href="user_profile.php" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../../server/helper/logout.php" class="nav-link" onclick="window.open('https://www.linkedin.com/m/logout/')">Log Out</a>  
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- <div class='text'> -->
+
+        <!-- <div class="ui-widget">
+            <input id="search-input" type="search" class="form-control" />
+        </div> -->
+
+
+
+    <div class="container animate__animated animate__jackInTheBox box" >
+        <h2 class="b">Initiative search</h2>
+        <div class="input-group" >
+            <div class="form-outline">
+                <label class="form-label" for="form1">Search by name</label>
+                <input id="search-input" type="search" class="form-control" />
+            </div>
+            <button id="search-button" type="button" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+
+        <!-- <div class="form-group">
+            <label class="control-label" for="date">Initiative Date</label>
+            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+        </div> -->
+
+        <div class="form-group" >
+        <label for="interests">Explore by Interests</label>
+            <select class="selectpicker" multiple data-live-search="true">
+                <option>Technology</option>
+                <option>Finance</option>
+                <option>Cooking</option>
+                <option>Business Development</option>
+                <option>Service & Hospitality</option>
+                <option>Food & Beverage</option>
+                <option>Education</option>
+            </select>
+            <button id="filter-button" type="button" class="btn btn-primary">
+                <i class="far fa-compass"></i>
+            </button>
+            <div class="invalid-feedback">
+                Please select an Interest.
+            </div>
+        </div>
+    
+        <p class="mt-4 text-center"><a href="http://localhost:3001">What's near me?</a></p>
+
+        
+    </div>
+
+    <div class="container animation animate__animated" id="interviewers">
+        <h2 class="b row" id="search-status"></h2>
+        <div class="row" id = "initiativelist"></div>
+    </div>
+
+    <!-- Calendar script -->
+    <!-- <script>
+        $(document).ready(function(){
+            var date_input=$('input[name="date"]'); //our date input has the name "date"
+            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+            var options={
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+        };
+        date_input.datepicker(options);
+        })
+    </script> -->
+    <script>
+            var serviceURL = "http://localhost:5000/initiative/names";
+            var initiative_names=[];
+
+            function loadNames(){
+                $.getJSON(serviceURL, function(data, status, xhr){
+                    console.log(data['suggestions']);
+                    for (var i = 0; i < data["suggestions"].length; i++ ) {
+                        initiative_names.push(data["suggestions"][i]);
+                    }
+                });
+
+                $('#search-input').autocomplete({
+                source: initiative_names,
+                }); 
+            };
+
+        $(document).ready(function(){
+            loadNames();   
+
+            $('#search-button').on('click', async function() {
+            var serviceURL2 = "http://localhost:5000/initiative/search";
+            var initiative_name = document.getElementById('search-input').value
+            
+            try { 
+                const response = await fetch(
+                serviceURL2, { method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ initiative_name : initiative_name})
+                }
+                );
+                const result = await response.json();
+                if (response.status === 200) {
+                    var allinitiatives = result.data['initiatives'];
+                    document.getElementById('initiativelist').innerHTML = '';
+                    showResults(allinitiatives)
+                    
+                } 
+            }
+            catch (error) {
+                // Errors when calling the service; such as network error, 
+                // service offline, etc
+                console.log('There is a problem retrieving data, please try again later. '+ error);
+            }
+            })
+        })
+
+        function showResults(allinitiatives) {
+
+
+            if (allinitiatives.length>0) {
+                let number = allinitiatives.length
+                document.getElementById('search-status').innerText = "Search result(s)"
+            }
+
+            else{
+                document.getElementById('search-status').innerText = "Couldn't find a result"
+            }
+
+
+            var node = document.getElementById('initiativelist');
+            
+
+            let createTaskCard = (task) => {
+
+            let card = document.createElement('div');
+            card.className = 'card col-sm-4';
+            card.style = 'width: 18rem';
+
+            let cardimg = document.createElement('img');
+            cardimg.className = 'card-img-top';
+            cardimg.src = 'img/children_programming.jpeg';
+            cardimg.alt = 'prof';
+
+            let cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            let title = document.createElement('h5');
+            title.innerText = task.initiative_name;
+            title.className = 'card-title';
+
+            let desc = document.createElement('p');
+            desc.className = 'desc';
+            desc.innerText = task.category;
+
+            let descreview = document.createElement('p');
+            descreview.className = 'desc-review';
+            descreview.innerText = task.description;
+            
+            cardBody.appendChild(title);
+            cardBody.appendChild(desc);
+            cardBody.appendChild(descreview);
+            card.appendChild(cardimg);
+            card.appendChild(cardBody);
+            node.appendChild(card);
+            }
+
+            if (allinitiatives.length == 0) {
+                node.innerHTML = '';
+            }
+
+            allinitiatives.forEach((initiative) => {
+                createTaskCard(initiative);
+            });
+            
+        };
+    </script>
+
+    <script>
+        $('#filter-button').on('click', async function () {
+            console.log('run')
+            var serviceURL = "http://localhost:5000/initiative/search_by_category";
+            let interests = [];
+            let value = document.getElementsByClassName('selectpicker')[0].selectedOptions;
+            for (let interest of value) {
+                interests.push(interest.text);
+            }
+
+            try { 
+
+                console.log(
+                    JSON.stringify({ interests : interests})
+                )
+
+                const response = await fetch(
+                serviceURL, { method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ interests : interests})
+                }
+                );
+                const result = await response.json();
+                if (response.status === 200) {
+                    var allinitiatives = result.data['initiatives'];
+                    // console.log(initiatives)
+                    document.getElementById('initiativelist').innerHTML = '';
+                    document.getElementById('search-status').innerHTML = '';
+                    showResults(allinitiatives);
+                } 
+            }
+            catch (error) {
+                console.log('There is a problem retrieving data, please try again later. '+ error);
+
+            } // error 
+        })
+    </script>
+
+
+</body>
+</html>

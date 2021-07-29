@@ -5,10 +5,13 @@ from flask_cors import CORS
 import json
 import requests
 from os import environ
+from sqlalchemy import and_, or_
 
 app = Flask(__name__)
+CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsInitiative'
+# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsInitiative'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsInitiative'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -48,8 +51,8 @@ class Initiative(db.Model):
         self.skills_required = skills_required
         self.date = date
         self.current_donations = current_donations;
-        self.time = time;
-        self.endorsed = endorsed;
+        self.time = time
+        self.endorsed = endorsed
 
     def json(self):
         return {"initiative_id": self.initiative_id, "initiative_name": self.initiative_name, "description": self.description, "volunteer_id": self.volunteer_id, "charity_id": self.charity_id, "support": self.support, "category": self.category, "volunteer_goal": self.volunteer_goal, "donation_goal": self.donation_goal, "skills_required": self.skills_required, "beneficiary_type": self.beneficiary_type, "date": self.date, "current_donations": self.current_donations, "time": self.time, "endorsed": self.endorsed}
@@ -122,6 +125,88 @@ def add_initiative():
             "data": initiative.json()
         }
     ), 201
+
+
+@app.route("/initiative/names")
+def get_all_initiatives_names():
+    initiative_names = Initiative.query.all()
+    initiative_list = []
+    # initiative_names = [initiative.nameId() for initiative in initiative_list]
+
+    for initiative in initiative_names:
+        initiative_list.append(initiative.initiative_name)
+    return jsonify(
+            {
+                "query": "Unit",
+                "suggestions": initiative_list
+            }
+        )
+
+    return jsonify(
+        {
+            "code": 404,
+            "message": "There are no initiatives."
+        }
+    ), 404
+
+
+@app.route("/initiative/search_by_category", methods=['POST'])
+def searchByCategory():
+
+    data = request.get_json()
+    interests = data['interests']
+    # initiatives = Initiative.query.filter(Initiative.initiative_name.like("Finance"), Initiative.initiative_name.like("Technology")).all()
+    
+    statements = ""
+    for interest in interests:
+        statements += f"Initiative.category.like('" + f"{interest}" + "'),"
+
+    if len(statements) != 0:
+        query = "Initiative.query.filter(or_(" + statements[:-1] + ")).all()"
+        initiatives = eval(query)
+    else:
+        initiatives =  Initiative.query.all()
+    return jsonify(
+        {
+            "code": 200,
+            "data": {
+                "initiatives": [initiative.json() for initiative in initiatives]
+            }
+        }
+    )
+
+    return jsonify(
+        {
+            "code": 404,
+            "message": "There are no initiatives."
+        }
+    ), 404
+
+
+@app.route("/initiative/search", methods=['POST'])
+def search():
+    print(request.get_json())
+    data = request.get_json()
+    
+    initiative_name = data['initiative_name']
+    # initiative_name = 'Hair for hope'
+    initiatives = Initiative.query.filter(Initiative.initiative_name.like(initiative_name)).all()
+
+    return jsonify(
+        {
+            "code": 200,
+            "data": {
+                "initiatives": [initiative.json() for initiative in initiatives]
+            }
+        }
+    )
+
+    return jsonify(
+        {
+            "code": 404,
+            "message": "There are no initiatives."
+        }
+    ), 404
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@ import requests
 from os import environ
 
 app = Flask(__name__)
+CORS(app)
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsBeneficiary'
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsBeneficiary'
@@ -16,31 +17,27 @@ db = SQLAlchemy(app)
 
 class Beneficiary(db.Model):
     __tablename__ = 'awsBeneficiary'
-    beneficiary_id = db.Column(db.Integer, primary_key=True)
+    beneficiary_type = db.Column(db.String(100), nullable=False)
     beneficiary_name = db.Column(db.String(150), nullable=False)
-    username = db.Column(db.String(150), nullable=False)
+    username = db.Column(db.String(150),  primary_key=True)
     email = db.Column(db.String(200), nullable=False)
-    address = db.Column(db.String(200), nullable=False)
-    password = db.Column(db.String(250), nullable=False)
     sex = db.Column(db.String(250), nullable=True)
-    description = db.Column(db.String(250), nullable=True)
     postal_code = db.Column(db.Integer, nullable=True)
     dateOfBirth = db.Column(db.Date, nullable=False)
+    interest = db.Column(db.String(250), nullable=True)
 
-    def __init__(self, beneficiary_id, username, beneficiary_name, email, address, password, sex, description, postal_code, dateOfBirth):
-        self.beneficiary_id = beneficiary_id
+    def __init__(self, username, beneficiary_name, email, sex, postal_code, dateOfBirth, beneficiary_type, interest):
         self.beneficiary_name = beneficiary_name
+        self.beneficiary_type = beneficiary_type
         self.username = username
         self.email = email
-        self.address = address
-        self.password = password
         self.sex = sex
-        self.description = description
         self.postal_code = postal_code
         self.dateOfBirth = dateOfBirth
+        self.interest = interest
 
     def json(self):
-        return {"beneficiary_id": self.beneficiary_id, "beneficiary_name": self.beneficiary_name, "email": self.email,"password": self.password, "username": self.username, "sex": self.sex, "description": self.description, "postal_code": self.postal_code, "dateOfBirth": self.dateOfBirth, "address":self.address}
+        return { "beneficiary_name": self.beneficiary_name, "beneficiary_type": self.beneficiary_type, "email": self.email, "username": self.username, "sex": self.sex,  "postal_code": self.postal_code, "dateOfBirth": self.dateOfBirth, "interest": self.interest}
 
 
 # get all beneficaries in a list
@@ -65,21 +62,11 @@ def get_all_beneficiary ():
 
 
 # create beneficiary account
-@app.route("/beneficiary/add/<int:beneficiary_id>", methods=['POST'])
-def add_beneficiary(beneficiary_id):
-    if (Beneficiary.query.filter_by(beneficiary_id=beneficiary_id).first()):
-        return jsonify(
-            {
-                "code": 400,
-                "data": {
-                    "beneficiary_id": beneficiary_id
-                },
-                "message": "Beneficiary already exists."
-            }
-        ), 400
+@app.route("/beneficiary/add", methods=['POST'])
+def add_beneficiary():
 
     data = request.get_json()
-    beneficiary = Beneficiary(beneficiary_id, **data)
+    beneficiary = Beneficiary(**data)
     
     try:
         db.session.add(beneficiary)
@@ -89,9 +76,9 @@ def add_beneficiary(beneficiary_id):
             {
                 "code": 500,
                 "data": {
-                    "beneficiary_id": beneficiary_id
+                    "error": "error"
                 },
-                "message": "An error occurred whilst adding the volunteer."
+                "message": "An error occurred whilst adding the beneficiary."
             }
         ), 500
     return jsonify(
@@ -100,6 +87,7 @@ def add_beneficiary(beneficiary_id):
             "data": beneficiary.json()
         }
     ), 201
+
 
 
 # pull beneficiary's personal particulars
