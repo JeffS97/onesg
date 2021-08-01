@@ -37,6 +37,36 @@
             opacity:1;
         }
         }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;  
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%; 
+            background: #04AA6D;
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #04AA6D;
+            cursor: pointer;
+        }
     </style>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -67,17 +97,31 @@
     <div class='text'>
     <div class="box container-fluid">
         <div class="profile">
-            <img src="" style="height: 150px; width: 150px;" id="user_img">
+            <img src="img/children_programming.jpeg" style="height: 150px; width: 150px;" id="user_img">
         </div>
         <!-- <h2 style="margin-top: -20px;" id="name"><span id="fname">Phris</span> <span id="lname">Coskitt</span></h2>
         <h4><span id="job">Assistant Professor of Information Systems</span>, <span id="company">SMU</span></h4> -->
         <h2 style="margin-top: -20px; display: inline; margin-right: 5px;" id="initiative_name"></h2><span id="endorsed"></span>
         <h4>by <span id="volunteer_name"></span></h4> 
         
-        <!-- Booking -->
-        <button class="btn btn-dark" type="button" style="margin-top: 40px;" id="book" data-toggle="modal" data-target="#booking_menu">
-            Register your interest
-        </button><br><br><br>
+        <div class="mx-auto">
+            <div class="row">
+                <!-- Booking -->
+                <div style="margin-right: 10px;">
+                    <button class="btn btn-dark" type="button" style="margin-top: 40px;" id="book" data-toggle="modal" data-target="#booking_menu">
+                        Register your interest
+                    </button>
+                </div>
+
+                <!-- Donate -->
+                <div style="margin-left: 10px;">
+                    <button class="btn btn-danger" type="button" style="margin-top: 40px;" id="toggle_donate" data-toggle="modal" data-target="#donation_menu">
+                        Donate!
+                    </button>
+                </div>
+            </div>
+        </div><br><br>
+        
 
         <!-- Donation Goal Progress -->
         <label for="donation_progress"><i class="fas fa-heart"></i> Donation Goal: <span id="donation_goal_progress"></span></label>
@@ -95,35 +139,42 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <!-- Toggled in accordance to availability --> 
-                  <h5 class="modal-title" id="availTimeslotHeader">Book an interview with <span id="interviewer_fname1"></span>!</h5>
-                  <h5 class="modal-title" id = "noTimeslotHeader" style="display:none">Oops! <span id="interviewer_fname2"> </span> is not available!</h5>
+                  <h5 class="modal-title">Thank you for volunteering!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form action="../../../server/helper/addBooking.php" method="POST" class="form">
                     <div class="modal-body">
-                        <div id="booking_form" style="margin-top: 10px;">
-                        <div id='noTimeslots' class = 'mx-auto' style="display:none">
-                            <span>Sorry, <span id="interviewer_fname3"></span> has no available slots in the next 2 months</span>
-                        </div>
-                        </div>
+                        Our volunteer-in-charge will contact you shortly with confirmation details!
                     </div>
-                    <input type="hidden" name="interviewer_id" id="interviewer_id">
-                    <div class="modal-footer" >
-                        <!-- Toggled in accordance to availability --> 
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="donation_menu" tabindex="-1" role="dialog" aria-labelledby="donation_menu" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                  <h5 class="modal-title" id="availTimeslotHeader">Select Donation Amount!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                    <div class="modal-body">
+                        <div class="slidecontainer" style="margin-top: 15px;">
+                            <input type="range" min="1" max="100" value="50" class="slider" id="donation_goal" name="donation_goal">
+                        </div>
+                        <p id="donation_output" style="margin-top: 10px; font-weight: bold;">$50</p>
+                    </div>
+                    <div class="modal-footer">
                         <div class="mx-auto" id='makeBooking'>
-                            <button type="submit" class="btn btn-dark" id="info_submit" name="info">Informational Interview</button>
-                            <button type="submit" class="btn btn-dark" id="mock_submit" name="mock">Mock Interview</button>
+                            <button type="submit" class="btn btn-danger" id="donate" name="info">Make Donation</button>
                         </div>
                     </div>
-                </form>
                 </div>
             </div>
         </div>
         
-
 
         <!-- Interviewer's Info -->
         <div style="width: 80%;" class="mx-auto">
@@ -178,6 +229,12 @@
     </div>
     
     <script type="text/javascript">
+    var donation_slider = document.getElementById('donation_goal');
+    var donation_output = document.getElementById('donation_output');
+    donation_slider.oninput = function(){
+        donation_output.innerHTML = "$" + this.value;
+    }
+
     $(document).ready(async()=>{
         var initiative_id = 1;
 
@@ -253,6 +310,133 @@
         catch (error){
             console.log(error);
         }
+    })
+
+    $("#donate").click(async()=>{
+        var initiative_id = 1;
+        var current_donations = 0;
+
+        var serviceURL = 'http://localhost:5000/initiative/findByInitiativeId/' + initiative_id;
+        var serviceURL3 = 'http://localhost:5000/initiative/donate';
+
+        try{
+            var response = await fetch(
+            serviceURL, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"}
+            })
+
+            var result = await response.json();
+            var data = result.data;
+            console.log(data);
+            current_donations = data.current_donations + parseInt(document.getElementById('donation_output').innerText.slice(1));
+            console.log(current_donations);
+
+            if(response.status === 200){
+                console.log("Successfully retrieved initiative's current donations")
+            }
+            else if(response.status == 400){
+                console.log("400");
+            }
+            else{
+                throw response.status;
+            }
+
+            // Update initiative current donation amount
+            try{
+                var response = await fetch(
+                serviceURL3, {
+                    method: 'PUT',
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        initiative_id: initiative_id,
+                        donation: current_donations
+                    })
+                })
+                
+                if(response.status === 200){
+                    console.log("Successfully updated initiative's current donations")
+                    location.reload();
+                }
+                else if(response.status == 400){
+                    console.log("400");
+                }
+                else{
+                    throw response.status;
+                }
+            }
+            catch (error){
+                console.log(error);
+            }
+        
+        }
+        catch (error){
+            console.log(error);
+        }
+
+    })
+
+    $("#book").click(async()=>{
+        var initiative_id = 1;
+        var current_volunteers = 0;
+
+        var serviceURL = 'http://localhost:5000/initiative/findByInitiativeId/' + initiative_id;
+        var serviceURL4 = 'http://localhost:5000/initiative/volunteer';
+
+        try{
+            var response = await fetch(
+            serviceURL, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"}
+            })
+
+            var result = await response.json();
+            var data = result.data;
+            console.log(data);
+            current_volunteers = data.support + 1;
+            console.log(current_volunteers);
+
+            if(response.status === 200){
+                console.log("Successfully retrieved initiative's current volunteers")
+            }
+            else if(response.status == 400){
+                console.log("400");
+            }
+            else{
+                throw response.status;
+            }
+
+            // Update initiative current donation amount
+            try{
+                var response = await fetch(
+                serviceURL4, {
+                    method: 'PUT',
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        initiative_id: initiative_id,
+                        support: current_volunteers
+                    })
+                })
+                
+                if(response.status === 200){
+                    console.log("Successfully updated initiative's current volunteers")
+                }
+                else if(response.status == 400){
+                    console.log("400");
+                }
+                else{
+                    throw response.status;
+                }
+            }
+            catch (error){
+                console.log(error);
+            }
+        
+        }
+        catch (error){
+            console.log(error);
+        }
+
     })
     </script>
 

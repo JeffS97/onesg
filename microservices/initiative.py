@@ -10,8 +10,8 @@ from sqlalchemy import and_, or_
 app = Flask(__name__)
 CORS(app)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsInitiative'
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsInitiative'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsInitiative'
+# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsInitiative'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -201,13 +201,86 @@ def search():
         }
     )
 
-    return jsonify(
-        {
-            "code": 404,
-            "message": "There are no initiatives."
-        }
-    ), 404
 
+@app.route("/initiative/donate", methods=['PUT'])
+def update_donation():
+    try:
+        data = request.get_json()
+        initiative_id = data['initiative_id']
+        initiative = Initiative.query.filter_by(initiative_id=initiative_id).first()
+        if not initiative:
+            return jsonify(
+                {
+                    "code": 404,
+                    "data": {
+                        "initiative_id": initiative_id
+                    },
+                    "message": "Initiative not found."
+                }
+            ), 404
+
+        if data['donation']:
+            initiative.current_donations = data['donation']
+
+        
+        db.session.commit()
+        return jsonify(
+            {
+                "code": 200,
+                "data": initiative.json()
+            }
+        ), 200
+            
+    except Exception as e:
+        return jsonify(
+            {
+                "code": 500,
+                "data": {
+                    "initiative_id": initiative_id
+                },
+                "message": "An error occurred while updating the initiative's current donation amount. " + str(e)
+            }
+        ), 500
+
+@app.route("/initiative/volunteer", methods=['PUT'])
+def update_volunteers():
+    try:
+        data = request.get_json()
+        initiative_id = data['initiative_id']
+        initiative = Initiative.query.filter_by(initiative_id=initiative_id).first()
+        if not initiative:
+            return jsonify(
+                {
+                    "code": 404,
+                    "data": {
+                        "initiative_id": initiative_id
+                    },
+                    "message": "Initiative not found."
+                }
+            ), 404
+
+        if data['support']:
+            initiative.support = data['support']
+
+        
+        db.session.commit()
+        return jsonify(
+            {
+                "code": 200,
+                "data": initiative.json()
+            }
+        ), 200
+            
+    except Exception as e:
+        return jsonify(
+            {
+                "code": 500,
+                "data": {
+                    "initiative_id": initiative_id
+                },
+                "message": "An error occurred while updating the initiative's current volunteer amount. " + str(e)
+            }
+        ), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
