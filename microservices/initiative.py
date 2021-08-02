@@ -10,8 +10,8 @@ from sqlalchemy import and_, or_
 app = Flask(__name__)
 CORS(app)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsInitiative'
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsInitiative'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/awsInitiative'
+# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/awsInitiative'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -23,7 +23,7 @@ class Initiative(db.Model):
 
     initiative_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
     initiative_name = db.Column(db.String(150), nullable=False)
-    description = db.Column(db.String(250), nullable=False)
+    description = db.Column(db.String(10000), nullable=False)
     volunteer_id = db.Column(db.Integer, nullable=False)
     charity_id = db.Column(db.Integer, nullable=True)
     support = db.Column(db.String(250), nullable=True)
