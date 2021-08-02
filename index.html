@@ -115,7 +115,7 @@
                     <a href="home.html" class="nav-link">Home</a>
                 </li> -->
                 <li class="nav-item">
-                    <a href="#interviewers" class="nav-link">Initiatives</a>
+                    <a href="allinitiatives" class="nav-link">Initiatives</a>
                 </li>
                 <li class="nav-item">
                     <a href="#about" class="nav-link">About Us</a>
@@ -168,7 +168,7 @@
         <h2 class="animation animate__animated a">Check out a few of our initiatives by the community!</h2>
         
         <div class="row" id = "initiativelist">
-                <!-- <div class="card col-sm-4" style="width: 18rem;">
+                <div class="card col-sm-4" style="width: 18rem;">
                     <img class="card-img-top" src="img/children_programming.jpeg" alt="prof">
                     <div class="card-body">
                         <h5 class="card-title">Programming lessons for under-privileged children</h5>
@@ -199,7 +199,7 @@
                               to source for outdated or discarded computer parts which are still reusable to build computers for the under-privileged.
                             </p>
                     </div>
-            </div> -->
+            </div>
         </div>
     </div>
 
@@ -482,76 +482,6 @@
       $('#sign_up').click(()=>{
         window.location.href = './volunteer_signup.html';
       })
-
-      $(document).ready(async()=>{
-          var serviceURL = 'http://localhost:5000/initiatives';
-  
-          try{
-              var response = await fetch(
-              serviceURL, {
-                  method: 'GET',
-                  headers: {"Content-Type": "application/json"}
-              })
-  
-              var result = await response.json();
-              var data = result.data;
-              //console.log(data);
-              var allinitiatives = data.initiatives;
-              //console.log(allinitiatives);
-              var node = document.getElementById('initiativelist');
-
-              let createTaskCard = (task) => {
-
-                let card = document.createElement('div');
-                card.className = 'card col-sm-4';
-                card.style = 'width: 18rem';
-
-                let cardimg = document.createElement('img');
-                cardimg.className = 'card-img-top';
-                cardimg.src = 'img/children_programming.jpeg';
-                cardimg.alt = 'prof';
-
-                let cardBody = document.createElement('div');
-                cardBody.className = 'card-body';
-
-                let title = document.createElement('h5');
-                title.innerText = task.initiative_name;
-                title.className = 'card-title';
-
-                let desc = document.createElement('p');
-                desc.className = 'desc';
-                desc.innerText = task.category;
-
-                let descreview = document.createElement('p');
-                descreview.className = 'desc-review';
-                descreview.innerText = task.description;
-                
-                cardBody.appendChild(title);
-                cardBody.appendChild(desc);
-                cardBody.appendChild(descreview);
-                card.appendChild(cardimg);
-                card.appendChild(cardBody);
-                node.appendChild(card);
-                }
-
-              allinitiatives.forEach((initiative) => {
-                createTaskCard(initiative);
-              });
-              
-              if(response.status === 200){
-                  console.log("Successfully retrieved initiative information")
-              }
-              else if(response.status == 400){
-                  console.log("400");
-              }
-              else{
-                  throw response.status;
-              }
-          }
-          catch (error){
-              console.log(error);
-          }
-      });
       </script>
 
 </body>

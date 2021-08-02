@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="resources/parallax.js-1.5.0/parallax.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>OneSG</title>
+    <link rel="stylesheet" href="resources/card4.css">
+    <link rel="stylesheet" href="resources/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet"> 
+</head>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASNTpPzSXtjG4RyIhE1CqXrooyswIIQds&libraries=&v=weekly" async></script>
+<style>
+    #map {
+        height: 100%;
+    }
+
+    .custom-map-control-button {
+        appearance: button;
+        background-color: #fff;
+        border: 0;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        margin: 10px;
+        padding: 0 0.5em;
+        height: 40px;
+        font: 400 18px Helvetica;
+        overflow: hidden;
+        color: black;
+    }
+
+    .custom-map-control-button:hover {
+        background: #ebebeb;
+    }
+
+    #legend {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        padding: 10px;
+        margin: 10px;
+        border: 3px solid #000;
+    }
+
+    #legend h3 {
+        margin-top: 0;
+    }
+
+    #legend img {
+        vertical-align: middle;
+        max-width: 30px;
+        max-height: 30px;
+
+    }
+    .bounce1 {
+      animation-delay: 0.3s;
+    }
+    .bounce2{
+      animation-delay: 0.5s;
+    }
+    .bounce3{
+      animation-delay: 0.7s;
+    }
+    .animation{
+      animation-duration: 1s;
+    }
+    .fadein{
+      animation-duration: 1.5s;
+    }
+    .anime{
+      animation-duration: 1.5s;
+    }
+    .jack{
+      animation-duration: 1.2s;
+    }
+    i {
+      margin-bottom: 10px;
+    }
+    li.faq {
+    margin-bottom: 10px;
+    text-decoration: none;
+    }
+    li.faq a{
+      color: black;
+      text-decoration: none;
+    }
+    .collapse{
+      margin-top: 5px;
+    }
+  </style>
+  <body data-spy="scroll" data-target="body" data-offset="490">
+      <script>
+          // Scroll Animation Function
+          $(document).ready(function() {
+               // Check if element is scrolled into view
+               function isScrolledIntoView(elem) {
+                  var docViewTop = $(window).scrollTop();
+                  var docViewBottom = docViewTop + $(window).height();
+  
+                  var elemTop = $(elem).offset().top;
+                  var elemBottom = elemTop + $(elem).height();
+  
+                  return (((elemTop >= docViewTop) && (elemTop <= docViewBottom)) || ((elemBottom >= docViewTop) && (elemBottom <= docViewBottom)));
+              }
+              // If element is scrolled into view, fade it in
+              $(window).scroll(function() {
+                  $('.animation').each(function() {
+                      if (isScrolledIntoView(this) === true) {
+                          $(this).addClass('animate__fadeInLeft');
+                      }
+                  });
+              });
+              $(window).scroll(function() {
+                  $('.bounce').each(function() {
+                      if (isScrolledIntoView(this) === true) {
+                          $(this).addClass('animate__bounceIn');
+                      }
+                  });
+              });
+              $(window).scroll(function() {
+                  $('.fadein').each(function() {
+                      if (isScrolledIntoView(this) === true) {
+                          $(this).addClass('animate__fadeIn');
+                      }
+                  });
+              });
+              $(window).scroll(function() {
+                  $('.jack').each(function() {
+                      if (isScrolledIntoView(this) === true) {
+                          $(this).addClass('animate__jackInTheBox');
+                      }
+                  });
+              });
+            });
+      </script>
+  
+  
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
+          <a href="index.html" class="navbar-brand"><img src="" style="width: 100px; height: auto;">onesg</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="hamburger">
+              <ul class="navbar-nav ml-auto">
+                  <!-- <li class="nav-item">
+                      <a href="home.html" class="nav-link">Home</a>
+                  </li> -->
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">Initiatives</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#about" class="nav-link">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#how" class="nav-link">How It Works</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#reviews" class="nav-link">Reviews</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#faq" class="nav-link">FAQ</a>
+                  </li>
+                  <li class="nav-item">
+                    <!-- LinkedIn Hidden Inputs -->
+                    <!-- <form method='get' action='https://www.linkedin.com/oauth/v2/authorization' class="form-inline">
+                      <input type='hidden' name='response_type' value = 'code'>
+                      <input type='hidden' name='client_id' value = '8666gpxcfx4fa8'>
+                      <input type='hidden' name='redirect_uri' value = 'http://localhost:8888/app/server/helper/callback.php'> -->
+                      <!-- <input type='hidden' name='state' value = 'DCEeFWf45A53sdfKef424'>  -->
+                      <!-- <input type='hidden' name='scope' value = 'r_liteprofile,r_emailaddress'> -->
+  
+                      <button href="http://localhost:8888/GitHub/onesg/volunteer_signup.html" type='submit' class="nav-link" style="background-color: transparent; border: none; text-transform: uppercase; letter-spacing: .1rem;" id="sign_up">Sign Up</button>
+                    <!-- </form>   -->
+                  </li>
+              </ul>
+          </div>
+      </nav>
+
+<body>
+    <div class="container" id="interviewers">
+        <div class="row">
+            <h2 class="a">Here are all the initiatives near you!</h2>
+            <div id="map" style="width: 100%; height: 450px;"></div>
+            <div id="legend"><h3>Legend</h3></div>
+        </div>
+        <h2 class="a">Here is the list of all available initiatives!</h2>
+        <div class="row" id = "initiativelist"></div>
+        <!-- Map View -->
+        
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center py-2" style="background-color: black; color: white; margin-top: 300px; font-size: small;">© 2021 Copyright: 
+        <a href="https://www.linkedin.com/in/jeffvinder-singh/" target="blank">OneSG</a> 
+    </div>
+</body>
+
+<script>
+    $(document).ready(async()=>{
+
+    let map;
+    function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 16,
+                center: {
+                    lat: 1.4257583539609486,
+                    lng: 103.83402226988251
+                },
+            })
+            infoWindow = new google.maps.InfoWindow();
+            const locationButton = document.createElement("button");
+            locationButton.textContent = "Pan to Current Location";
+            locationButton.classList.add("custom-map-control-button");
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);;
+
+            locationButton.addEventListener("click", () => {
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            };
+                            //   infoWindow.setPosition(pos);
+                            //   infoWindow.setContent("Location found.");
+                            //   infoWindow.open(map);
+                            map.setCenter(pos);
+                        },
+                        () => {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        }
+                    );
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+            });
+            const iconBase = "img/";
+            const icons = {
+                donation: {
+                name: "Donation",
+                icon: iconBase + "salary.png",
+                },
+                volunteer: {
+                name: "Volunteer",
+                icon: iconBase + "help.png",
+                },
+            };
+
+            const features = [
+    {
+        position: new google.maps.LatLng(1.4309136087653511, 103.8385834554465),
+        type: "volunteer",
+        },
+        {
+        position: new google.maps.LatLng(1.4339703714319805, 103.83378766595393),
+        type: "donation",
+        },
+        {
+        position: new google.maps.LatLng(1.4295407456099793, 103.83628748463798),
+        type: "volunteer",
+        },
+        {
+        position: new google.maps.LatLng(1.4327476668547219, 103.8430037356947),
+        type: "volunteer",
+        },
+        {
+        position: new google.maps.LatLng(1.427599525513404, 103.84721775691773),
+        type: "donation",
+        },
+    ];
+
+        features.forEach((feature) => {
+        var marker = new google.maps.Marker({
+            position: feature.position,
+            icon: {
+                size: new google.maps.Size(50, 50),
+                scaledSize: new google.maps.Size(50, 50),
+                url:icons[feature.type].icon
+            },
+            map: map,
+            });
+        google.maps.event.addDomListener(marker, 'click', function() {
+        window.location.href = 'initiative.html?id=1';
+        });
+    });
+
+
+    const legend = document.getElementById("legend");
+
+    for (const key in icons) {
+        const type = icons[key];
+        const name = type.name;
+        const icon = type.icon;
+        const div = document.createElement("div");
+        div.innerHTML = '<img src="' + icon + '"> ' + name;
+        legend.appendChild(div);
+    }
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+    }
+          var serviceURL = 'http://localhost:5000/initiatives';
+          var imglist = ["img/physio.jpeg", "img/build_com.jpeg", "img/children_programming.jpeg", "img/volunteer_food.jpg"];
+          initMap();
+          try{
+              var response = await fetch(
+              serviceURL, {
+                  method: 'GET',
+                  headers: {"Content-Type": "application/json"}
+              })
+  
+              var result = await response.json();
+              var data = result.data;
+              //console.log(data);
+              var allinitiatives = data.initiatives;
+              //console.log(allinitiatives);
+              var node = document.getElementById('initiativelist');
+
+              let createTaskCard = (task) => {
+                var img = imglist[Math.floor(Math.random()*imglist.length)];
+
+                let card = document.createElement('div');
+                card.className = 'card col-sm-4 text-center';
+                card.style = 'width: 18rem';
+
+                let cardimg = document.createElement('img');
+                cardimg.className = 'card-img-top';
+                cardimg.src = img;
+                cardimg.alt = img.innerText;
+
+                let cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+
+                let title = document.createElement('h5');
+                title.innerText = task.initiative_name;
+                title.className = 'card-title';
+
+                let desc = document.createElement('p');
+                desc.className = 'desc';
+                desc.innerText = task.category;
+
+                let descreview = document.createElement('p');
+                descreview.className = 'desc-review';
+                descreview.innerText = task.description;
+
+                let cardlink = document.createElement('a');
+                cardlink.setAttribute('href', "initiative.html?id="+task.initiative_id);
+                cardlink.className = 'btn btn-primary stretched-link';
+                cardlink.innerText = 'View Initiative Details';
+
+                cardBody.appendChild(title);
+                cardBody.appendChild(desc);
+                cardBody.appendChild(descreview);
+                cardBody.appendChild(cardlink);
+                card.appendChild(cardimg);
+                card.appendChild(cardBody);
+                node.appendChild(card);
+                }
+
+              allinitiatives.forEach((initiative) => {
+                createTaskCard(initiative);
+              });
+              
+              if(response.status === 200){
+                  console.log("Successfully retrieved initiative information")
+              }
+              else if(response.status == 400){
+                  console.log("400");
+              }
+              else{
+                  throw response.status;
+              }
+          }
+          catch (error){
+              console.log(error);
+          }
+      });
+</script>
