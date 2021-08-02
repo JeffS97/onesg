@@ -138,7 +138,7 @@
                     <!-- <input type='hidden' name='state' value = 'DCEeFWf45A53sdfKef424'>  -->
                     <!-- <input type='hidden' name='scope' value = 'r_liteprofile,r_emailaddress'> -->
 
-                    <button href="#" type='submit' class="nav-link" style="background-color: transparent; border: none; text-transform: uppercase; letter-spacing: .1rem;">Log In</button>
+                    <button href="http://localhost:8888/GitHub/onesg/volunteer_signup.html" type='submit' class="nav-link" style="background-color: transparent; border: none; text-transform: uppercase; letter-spacing: .1rem;" id="sign_up">Sign Up</button>
                   <!-- </form>   -->
                 </li>
             </ul>
@@ -479,6 +479,10 @@
     </div>
 
     <script type="text/javascript">
+      $('#sign_up').click(()=>{
+        window.location.href = './volunteer_signup.html';
+      })
+
       $(document).ready(async()=>{
           var serviceURL = 'http://localhost:5000/initiatives';
   

@@ -18,7 +18,7 @@ CORS(app)
 class Volunteer(db.Model):
     __tablename__ = 'awsVolunteer'
 
-    volunteer_id = db.Column(db.Integer, primary_key=True)
+    volunteer_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
     volunteer_name = db.Column(db.String(150), nullable=False)
     username = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(200), nullable=False)
@@ -34,8 +34,8 @@ class Volunteer(db.Model):
     areas_of_interest = db.Column(db.String(250), nullable=False)
     postal_code = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, volunteer_id, username, volunteer_name, email, age, address, payment, password, skills, credentials, sex, description, areas_of_interest, postal_code):
-        self.volunteer_id = volunteer_id
+    def __init__(self, username, volunteer_name, email, age, address, payment, password, skills, credentials, sex, description, areas_of_interest, postal_code):
+        # self.volunteer_id = volunteer_id
         self.volunteer_name = volunteer_name
         self.username = username
         self.email = email
@@ -77,21 +77,11 @@ def get_all_volunteers():
 
 
 # create volunteer account
-@app.route("/volunteer/add/<int:vid>", methods=['POST'])
-def add_volunteer(vid):
-    if (Volunteer.query.filter_by(volunteer_id=vid).first()):
-        return jsonify(
-            {
-                "code": 400,
-                "data": {
-                    "volunteer_id": vid
-                },
-                "message": "Volunteer already exists."
-            }
-        ), 400
- 
+@app.route("/volunteer/add", methods=['POST'])
+def add_volunteer():
     data = request.get_json()
-    volunteer = Volunteer(vid, **data)
+    print(data)
+    volunteer = Volunteer(**data)
  
     try:
         db.session.add(volunteer)
@@ -100,9 +90,6 @@ def add_volunteer(vid):
         return jsonify(
             {
                 "code": 500,
-                "data": {
-                    "volunteer_id": vid
-                },
                 "message": "An error occurred whilst adding the volunteer."
             }
         ), 500
