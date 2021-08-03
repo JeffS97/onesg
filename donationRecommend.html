@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="resources/parallax.js-1.5.0/parallax.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>OneSG</title>
+    <link rel="stylesheet" href="resources/card4.css">
+    <link rel="stylesheet" href="resources/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet"> 
+</head>
+<style>
+    
+    .bounce1 {
+      animation-delay: 0.3s;
+    }
+    .bounce2{
+      animation-delay: 0.5s;
+    }
+    .bounce3{
+      animation-delay: 0.7s;
+    }
+    .animation{
+      animation-duration: 1s;
+    }
+    .fadein{
+      animation-duration: 1.5s;
+    }
+    .anime{
+      animation-duration: 1.5s;
+    }
+    .jack{
+      animation-duration: 1.2s;
+    }
+    i {
+      margin-bottom: 10px;
+    }
+    li.faq {
+    margin-bottom: 10px;
+    text-decoration: none;
+    }
+    li.faq a{
+      color: black;
+      text-decoration: none;
+    }
+    .collapse{
+      margin-top: 5px;
+    }
+  </style>
+  <body data-spy="scroll" data-target="body" data-offset="490">
+      <script>
+          // Scroll Animation Function
+          $(document).ready(function() {
+               // Check if element is scrolled into view
+               function isScrolledIntoView(elem) {
+                  var docViewTop = $(window).scrollTop();
+                  var docViewBottom = docViewTop + $(window).height();
+  
+                  var elemTop = $(elem).offset().top;
+                  var elemBottom = elemTop + $(elem).height();
+  
+                  return (((elemTop >= docViewTop) && (elemTop <= docViewBottom)) || ((elemBottom >= docViewTop) && (elemBottom <= docViewBottom)));
+              }
+              // If element is scrolled into view, fade it in
+              $(window).scroll(function() {
+                  $('.animation').each(function() {
+                      if (isScrolledIntoView(this) === true) {
+                          $(this).addClass('animate__fadeInLeft');
+                      }
+                  });
+              });
+              $(window).scroll(function() {
+                  $('.bounce').each(function() {
+                      if (isScrolledIntoView(this) === true) {
+                          $(this).addClass('animate__bounceIn');
+                      }
+                  });
+              });
+              $(window).scroll(function() {
+                  $('.fadein').each(function() {
+                      if (isScrolledIntoView(this) === true) {
+                          $(this).addClass('animate__fadeIn');
+                      }
+                  });
+              });
+              $(window).scroll(function() {
+                  $('.jack').each(function() {
+                      if (isScrolledIntoView(this) === true) {
+                          $(this).addClass('animate__jackInTheBox');
+                      }
+                  });
+              });
+            });
+      </script>
+  
+  
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
+          <a href="index.html" class="navbar-brand"><img src="" style="width: 100px; height: auto;">onesg</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="hamburger">
+              <ul class="navbar-nav ml-auto">
+                  <!-- <li class="nav-item">
+                      <a href="home.html" class="nav-link">Home</a>
+                  </li> -->
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">Initiatives</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#about" class="nav-link">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#how" class="nav-link">How It Works</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#reviews" class="nav-link">Reviews</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#faq" class="nav-link">FAQ</a>
+                  </li>
+                  <li class="nav-item">
+                    <!-- LinkedIn Hidden Inputs -->
+                    <!-- <form method='get' action='https://www.linkedin.com/oauth/v2/authorization' class="form-inline">
+                      <input type='hidden' name='response_type' value = 'code'>
+                      <input type='hidden' name='client_id' value = '8666gpxcfx4fa8'>
+                      <input type='hidden' name='redirect_uri' value = 'http://localhost:8888/app/server/helper/callback.php'> -->
+                      <!-- <input type='hidden' name='state' value = 'DCEeFWf45A53sdfKef424'>  -->
+                      <!-- <input type='hidden' name='scope' value = 'r_liteprofile,r_emailaddress'> -->
+  
+                      <button href="http://localhost:8888/GitHub/onesg/volunteer_signup.html" type='submit' class="nav-link" style="background-color: transparent; border: none; text-transform: uppercase; letter-spacing: .1rem;" id="sign_up">Sign Up</button>
+                    <!-- </form>   -->
+                  </li>
+              </ul>
+          </div>
+      </nav>
+
+<body>
+    <div class="container" id="interviewers">
+        <h2 class="a">Here are the nearby initiatives where you can donate a Teddy Bear!</h2>
+        <div class="row" id = "initiativelist">
+            <div class="card col-sm-4 text-center" style="width: 18rem;">
+                <img class="card-img-top" src="img/children_programming.jpeg" alt="prof">
+                <div class="card-body">
+                    <h5 class="card-title">Donate Toys for Underprivileged Children</h5>
+                    <p class="desc">Led by "Care for Kids"</p>
+                        <p class="desc-review">Enable us to pool together a vast selection of toys, which are then nicely wrapped for the taking. 
+                            On top of the presents, the giant carnival also treats about 3,000 underprivileged children to fun games and yummy food. 
+                            The purpose of the event is to deliver a message of hope and love. Toys spark creativity, and more importantly, they are made for play - 
+                            something every child loves to do! With the Toy Buffet, Food from the Heart seeks to show underprivileged children that they too are special.
+                        </p>
+                        <a href="initiative.html?id=1" class="btn btn-primary stretched-link">View Initiative Details</a>
+                </div>
+            </div>
+            <div class="card col-sm-4 text-center" style="width: 18rem;">
+                <img class="card-img-top" src="img/physio.jpeg" alt="xw">
+                <div class="card-body">
+                    <h5 class="card-title">Donate Toys for GreenSquare</h5>
+                    <p class="desc">Led by "Thenwage"</p>
+                        <p class="desc-review">Greensquare aspires to make a positive impact; their current target is to double the percentage of recycled textiles from 7% to 14% by 
+                            2020. They also provide free textile recycling services to households and organisations in Singapore and promote awareness of the 3Rs (Reduce, Reuse, Recycle) 
+                            through education, with a focus on engaging youths in schools.</p>
+                        <a href="initiative.html?id=1" class="btn btn-primary stretched-link">View Initiative Details</a>
+                </div>
+            </div>
+            <div class="card col-sm-4 text-center" style="width: 18rem;">
+                <img class="card-img-top" src="img/build_com.jpeg" alt="hs">
+                <div class="card-body">
+                    <h5 class="card-title">Global Ehsan Relief</h5>
+                    <p class="desc">Led by "Relief For Kids"</p>
+                        <p class="desc-review">As the usage of computers becomes more prevalent in society, it is hard to ignore the fact that it is arguably a basic necessity in today's world.
+                          However, there are still many under-privileged Singaporeans without computers. As such, Scrap Builders hopes to gather Computer-building enthusiasts
+                          to source for outdated or discarded computer parts which are still reusable to build computers for the under-privileged.
+                        </p>
+                        <a href="initiative.html?id=1" class="btn btn-primary stretched-link">View Initiative Details</a>
+                </div>
+        </div>
+        </div>
+        <!-- Map View -->
+        
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center py-2" style="background-color: black; color: white; margin-top: 300px; font-size: small;">© 2021 Copyright: 
+        <a href="https://www.linkedin.com/in/jeffvinder-singh/" target="blank">OneSG</a> 
+    </div>
+</body>

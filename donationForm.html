@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="resources/style.css">
+    <title>Initiative Creation</title>
+    <style>
+        body {
+            margin-top: 80px;
+            background-image: url("img/red.jpg");
+            background-repeat: repeat;
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
+        <a href="index.html" class="navbar-brand">
+
+        OneSG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="hamburger">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Back To Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container animate__animated animate__jackInTheBox box">
+        <h2 class="b">Search for nearby Donation Drives for your Item!</h2>
+
+        <form class="needs-validation" novalidate style="margin-top: 30px;" class="form">
+            
+            <div class="form-group">
+                <label>What Item Do You Have For Donation: </label>
+                <input type="text" id="initiative_name" class="form-control" value="Teddy Bear" required>
+                <div class="invalid-feedback">
+                  Item name is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Location: </label>
+                <input type="text" id="description" name="description" class="form-control" value="760762" required>
+                <div class="invalid-feedback">
+                  Location is required.
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-dark animate__animated animate__fadeInDown" id="create_initiative" style="margin-top:20px;"type="button" onclick="location.href='./donationRecommend.html'">Search</button>
+            </div>
+            
+        </form>
+
+    </div>
+    </script>
+</body>
+</html>
