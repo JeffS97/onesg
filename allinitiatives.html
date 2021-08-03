@@ -97,6 +97,12 @@
     .collapse{
       margin-top: 5px;
     }
+
+    body {
+            margin-top: 80px;
+            background-image: url("img/red.jpg");
+            background-repeat: repeat;
+        }
   </style>
   <body data-spy="scroll" data-target="body" data-offset="490">
       <script>
@@ -153,52 +159,34 @@
           </button>
           <div class="collapse navbar-collapse" id="hamburger">
               <ul class="navbar-nav ml-auto">
-                  <!-- <li class="nav-item">
-                      <a href="home.html" class="nav-link">Home</a>
-                  </li> -->
                   <li class="nav-item">
                       <a href="#" class="nav-link">Initiatives</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#about" class="nav-link">About Us</a>
+                      <a href="./create_initiative.html" class="nav-link">Create Initiative</a>
                   </li>
                   <li class="nav-item">
-                    <a href="#how" class="nav-link">How It Works</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#reviews" class="nav-link">Reviews</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#faq" class="nav-link">FAQ</a>
-                  </li>
-                  <li class="nav-item">
-                    <!-- LinkedIn Hidden Inputs -->
-                    <!-- <form method='get' action='https://www.linkedin.com/oauth/v2/authorization' class="form-inline">
-                      <input type='hidden' name='response_type' value = 'code'>
-                      <input type='hidden' name='client_id' value = '8666gpxcfx4fa8'>
-                      <input type='hidden' name='redirect_uri' value = 'http://localhost:8888/app/server/helper/callback.php'> -->
-                      <!-- <input type='hidden' name='state' value = 'DCEeFWf45A53sdfKef424'>  -->
-                      <!-- <input type='hidden' name='scope' value = 'r_liteprofile,r_emailaddress'> -->
-  
-                      <button href="http://localhost:8888/GitHub/onesg/volunteer_signup.html" type='submit' class="nav-link" style="background-color: transparent; border: none; text-transform: uppercase; letter-spacing: .1rem;" id="sign_up">Sign Up</button>
-                    <!-- </form>   -->
+                    <a href="./index.html" class="nav-link">Logout</a>
                   </li>
               </ul>
           </div>
       </nav>
 
 <body>
-    <div class="container" id="interviewers">
-        <div class="row">
-            <h2 class="a">Here are all the initiatives near you!</h2>
-            <div id="map" style="width: 100%; height: 450px;"></div>
-            <div id="legend"><h3>Legend</h3></div>
+    <div class="box">
+        <div class="container" id="interviewers">
+            <div class="row">
+                <h2 class="a">Here are all the initiatives near you!</h2>
+                <div id="map" style="width: 100%; height: 450px;"></div>
+                <div id="legend"><h3>Legend</h3></div>
+            </div>
+            <h2 class="a">Here is the list of all available initiatives!</h2>
+            <div class="row" id = "initiativelist"></div>
+            <!-- Map View -->
+            
         </div>
-        <h2 class="a">Here is the list of all available initiatives!</h2>
-        <div class="row" id = "initiativelist"></div>
-        <!-- Map View -->
-        
     </div>
+    
 
     <!-- Footer -->
     <div class="text-center py-2" style="background-color: black; color: white; margin-top: 300px; font-size: small;">© 2021 Copyright: 

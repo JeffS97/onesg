@@ -56,7 +56,7 @@ Use awsInitiative;
 CREATE TABLE awsInitiative(
 initiative_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 initiative_name VARCHAR(200) NOT NULL,
-description VARCHAR(255) NULL,
+description VARCHAR(10000) NULL,
 category VARCHAR(255) NULL,
 
 -- If Volunteers and Chairities support / propose them
@@ -177,3 +177,15 @@ need_name VARCHAR(255) NOT NULL,
 
 PRIMARY KEY (beneficiary_id, need_name)
 );
+
+INSERT INTO awsInitiative.awsInitiative (`initiative_id`, `volunteer_id`, `initiative_name`, `description`, `charity_id`, `support`, `category`, `volunteer_goal`, `donation_goal`, `beneficiary_type`, `skills_required`, `date`, `current_donations`, `time`, `endorsed`)
+VALUES (1, 1,'Programming lessons for under-privileged children','As the world of Information Technology advances, it is clear that our future will be built upon technology. As such, to give the under-privileged children a headstart in this future, Coding From The Heart hopes to gather proficient programmers to educate these children on the power of programming so that it may some day change their lives for the better.', 1, 67, "Technology", 100, 1000, "Under-privileged children", "Java, Spring", "Thursday", 0, "12:00", 1);
+
+INSERT INTO awsInitiative.awsInitiative (`initiative_id`, `volunteer_id`, `initiative_name`, `description`, `charity_id`, `support`, `category`, `volunteer_goal`, `donation_goal`, `beneficiary_type`, `skills_required`, `date`, `current_donations`, `time`, `endorsed`)
+VALUES (2, 1,'Free physiotherapy sessions for the elderly','It is commonly known that the elderly tend to suffer from pains in their bodies be it from recent falls or a result of past injuries in their youth coming back to haunt them. However, the high cost of physiotherapy sessions in our healthcare centres discourage the elderly from seeking proper treatment. As such, Physio For Good hopes to gather certified physiotherapists to offer free sessions to keep our golden generation in the pink of health!', 1, 67, "Health", 100, 1000, "Under-privileged children", "Java, Spring", "Thursday", 0, "12:00", 1);
+
+INSERT INTO awsInitiative.awsInitiative (`initiative_id`, `volunteer_id`, `initiative_name`, `description`, `charity_id`, `support`, `category`, `volunteer_goal`, `donation_goal`, `beneficiary_type`, `skills_required`, `date`, `current_donations`, `time`, `endorsed`)
+VALUES (3, 1,'Building computers for the under-privileged',"As the usage of computers becomes more prevalent in society, it is hard to ignore the fact that it is arguably a basic necessity in today's world. However, there are still many under-privileged Singaporeans without computers. As such, Scrap Builders hopes to gather Computer-building enthusiasts to source for outdated or discarded computer parts which are still reusable to build computers for the under-privileged.", 1, 67, "Technology", 100, 1000, "Under-privileged children", "Java, Spring", "Thursday", 0, "12:00", 1);
+
+INSERT INTO awsVolunteer.awsVolunteer (`volunteer_id`, `username`, `volunteer_name`, `email`, `age`, `address`, `payment`, `password`, `skills`, `credentials`, `sex`, `description`, `areas_of_interest`, `postal_code`)
+VALUES (1, 'Zhi Hao', 'Coding from the Heart', 'asd', 23, 'asd', 'asd', 'asd', 'asd', 'asd', 'M', 'asd', 'asd', 123)
